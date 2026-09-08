@@ -210,44 +210,6 @@
     font-style: italic;
   }
 
-  /* BRANDS STRIP */
-  section.brands {
-    padding: 40px 0 48px;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .brands-title {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-dim);
-    margin: 0 0 24px;
-  }
-
-  .brands-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 28px;
-    align-items: center;
-  }
-
-  .brand-logo {
-    height: 36px;
-    width: auto;
-    max-width: 120px;
-    object-fit: contain;
-    filter: grayscale(100%) brightness(1.6) opacity(0.75);
-    transition: filter 0.15s ease;
-  }
-
-  .brand-logo:hover {
-    filter: grayscale(0%) brightness(1) opacity(1);
-  }
-
-  .brand-slot {
-    display: none;
-  }
-
   /* SECTIONS */
   section.pillar {
     padding: 56px 0 8px;
@@ -801,17 +763,6 @@
 
     </div>
     <p class="work-note">The image slots above look for files in an "images" folder next to this HTML file. Save your screenshots or Canva exports there with the exact filenames shown, and the two remaining link hrefs can be updated to any URL you like. Until an image is added, a dashed placeholder shows instead of a broken image icon.</p>
-  </section>
-
-  <section class="brands">
-    <p class="brands-title">Brands I've worked with</p>
-    <div class="brands-row">
-      <img class="brand-logo" src="images/brand-1.png" alt="Brand name" onerror="this.style.display='none';">
-      <img class="brand-logo" src="images/brand-2.png" alt="Brand name" onerror="this.style.display='none';">
-      <img class="brand-logo" src="images/brand-3.png" alt="Brand name" onerror="this.style.display='none';">
-      <img class="brand-logo" src="images/brand-4.png" alt="Brand name" onerror="this.style.display='none';">
-    </div>
-    <p class="work-note">Drop transparent-background PNG logos into images/brand-1.png, brand-2.png, etc. Logos without a matching file simply won't show, so add as many or as few as you have permission to use.</p>
   </section>
 
   <section class="pillar">
