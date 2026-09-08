@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wesley Wes Creates — Rate Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14181c;
+    --panel: #1b2126;
+    --line: #33393f;
+    --text: #ece7dd;
+    --text-dim: #9aa2a8;
+    --amber: #e8a33d;
+    --teal: #4b7a72;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    padding: 0 0 140px;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  @media (min-width: 860px) {
+    .wrap {
+      max-width: 920px;
+      padding: 0 40px;
+    }
+    .rate-row-inner {
+      grid-template-columns: 1fr 200px;
+      column-gap: 40px;
+    }
+    .rate-desc {
+      max-width: 56ch;
+    }
+    .work-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* HERO */
+  header.hero {
+    padding: 72px 0 48px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .kicker {
+    font-size: 13px;
+    color: var(--amber);
+    letter-spacing: 0.02em;
+    margin: 0 0 18px;
+  }
+
+  h1.name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(40px, 9vw, 64px);
+    line-height: 1.04;
+    margin: 0 0 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .tagline {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    max-width: 46ch;
+    margin: 0 0 20px;
+  }
+
+  .howto {
+    font-size: 13.5px;
+    color: var(--teal);
+    background: rgba(75,122,114,0.12);
+    border: 1px solid rgba(75,122,114,0.35);
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 4px;
+    margin: 0;
+  }
+
+  /* RECENT WORK */
+  section.work {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  h2.work-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 24px;
+    margin: 0 0 8px;
+  }
+
+  .work-sub {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin: 0 0 28px;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .work-card {
+    display: block;
+    text-decoration: none;
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 18px;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .work-card:hover {
+    border-color: var(--amber);
+    background: rgba(232,163,61,0.05);
+  }
+
+  .work-card-label {
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--amber);
+    margin: 0 0 8px;
+  }
+
+  .work-card-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    line-height: 1.4;
+  }
+
+  .work-card-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .work-note {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 18px;
+    font-style: italic;
+  }
+
+  /* SECTIONS */
+  section.pillar {
+    padding: 56px 0 8px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  section.pillar:last-of-type {
+    border-bottom: none;
+  }
+
+  .pillar-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 16px;
+  }
+
+  h2.pillar-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 28px;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+
+  .pillar-note {
+    font-size: 13px;
+    color: var(--text-dim);
+    white-space: nowrap;
+    padding-bottom: 3px;
+  }
+
+  .pillar-intro {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    max-width: 54ch;
+    margin: 0 0 36px;
+  }
+
+  /* RATE ROWS (selectable) */
+  .rate-row {
+    border-top: 1px solid var(--line);
+    padding: 22px 0;
+    cursor: pointer;
+  }
+
+  .rate-row:last-child {
+    padding-bottom: 28px;
+  }
+
+  .rate-row-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 24px;
+    align-items: start;
+  }
+
+  .rate-select {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .rate-select input[type="radio"],
+  .rate-select input[type="checkbox"] {
+    margin-top: 4px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--amber);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .rate-name {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+
+  .rate-desc {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    margin: 0;
+    max-width: 48ch;
+  }
+
+  .rate-price {
+    font-variant-numeric: tabular-nums;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--amber);
+    text-align: right;
+    white-space: nowrap;
+    padding-top: 1px;
+    display: block;
+  }
+
+  .rate-unit {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-dim);
+    text-align: right;
+    margin-top: 2px;
+  }
+
+  .rate-row.is-active {
+    background: rgba(232,163,61,0.06);
+    margin: 0 -16px;
+    padding: 22px 16px;
+    border-radius: 6px;
+  }
+
+  .qty-box {
+    display: none;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+  }
+
+  .rate-row.is-active .qty-box.show {
+    display: flex;
+  }
+
+  .qty-box label {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .qty-box .stepper {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .qty-box button {
+    background: var(--panel);
+    color: var(--text);
+    border: none;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .qty-box button:hover {
+    background: rgba(232,163,61,0.15);
+  }
+
+  .qty-box .qty-val {
+    width: 40px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .qty-hint {
+    font-size: 12px;
+    color: var(--teal);
+  }
+
+  .retainer-note {
+    margin-top: 4px;
+    padding: 18px 20px;
+    background: var(--panel);
+    border-left: 2px solid var(--teal);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+
+  .retainer-note strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ADD-ONS */
+  .addons-list {
+    list-style: none;
+    margin: 24px 0 32px;
+    padding: 0;
+  }
+
+  .addons-list li {
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14.5px;
+    cursor: pointer;
+  }
+
+  .addons-list li.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+
+  .addons-list li:last-child {
+    padding-bottom: 0;
+  }
+
+  .addon-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .addon-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--amber);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .is-disabled .addon-row input[type="checkbox"] {
+    cursor: not-allowed;
+  }
+
+  .addon-name {
+    color: var(--text);
+    flex: 1;
+  }
+
+  .addon-hint {
+    display: block;
+    font-size: 11.5px;
+    color: var(--teal);
+    margin-top: 2px;
+  }
+
+  .addon-price {
+    color: var(--text-dim);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* CLOSING */
+  footer.closing {
+    padding: 60px 0 0;
+    text-align: left;
+  }
+
+  .closing-text {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.5;
+    max-width: 34ch;
+    margin: 0 0 28px;
+    color: var(--text);
+  }
+
+  .contact-line {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+
+  .contact-line a {
+    color: var(--amber);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,163,61,0.35);
+  }
+
+  .contact-line a:hover {
+    border-bottom-color: var(--amber);
+  }
+
+  .payment-terms {
+    margin-top: 24px;
+    padding: 14px 18px;
+    background: var(--panel);
+    border-left: 2px solid var(--amber);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    max-width: 50ch;
+  }
+
+  .payment-terms strong {
+    color: var(--text);
+  }
+
+  .validity {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--text-dim);
+  }
+
+  /* STICKY CART BAR */
+  .cart-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #0f1215;
+    border-top: 1px solid var(--line);
+    z-index: 50;
+    box-shadow: 0 -8px 24px rgba(0,0,0,0.35);
+  }
+
+  .cart-bar-main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    cursor: pointer;
+  }
+
+  @media (min-width: 860px) {
+    .cart-bar-main { padding: 16px 40px; }
+  }
+
+  .cart-label {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    margin: 0 0 2px;
+  }
+
+  .cart-total {
+    font-variant-numeric: tabular-nums;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--amber);
+    margin: 0;
+  }
+
+  .cart-total .empty-hint {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-dim);
+  }
+
+  .cart-toggle {
+    font-size: 13px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cart-toggle svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.2s ease;
+  }
+
+  .cart-bar.open .cart-toggle svg {
+    transform: rotate(180deg);
+  }
+
+  .cart-breakdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    border-top: 1px solid transparent;
+  }
+
+  .cart-bar.open .cart-breakdown {
+    max-height: 440px;
+    overflow-y: auto;
+    border-top: 1px solid var(--line);
+  }
+
+  .cart-breakdown-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 16px 28px 20px;
+  }
+
+  @media (min-width: 860px) {
+    .cart-breakdown-inner { padding: 16px 40px 20px; }
+  }
+
+  .cart-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    padding: 6px 0;
+    color: var(--text-dim);
+  }
+
+  .cart-line.discount {
+    color: var(--teal);
+  }
+
+  .cart-line.total {
+    color: var(--text);
+    font-weight: 600;
+    border-top: 1px solid var(--line);
+    margin-top: 6px;
+    padding-top: 10px;
+    font-size: 15px;
+  }
+
+  .cart-empty-msg {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    padding: 6px 0;
+  }
+
+  .cart-next-step {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    margin: 14px 0 12px;
+    line-height: 1.5;
+  }
+
+  .cart-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .cart-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+  }
+
+  .cart-btn.primary {
+    background: var(--amber);
+    color: #14181c;
+  }
+
+  .cart-btn.primary:hover {
+    background: #f0b155;
+  }
+
+  .cart-btn.secondary {
+    background: transparent;
+    border: 1px solid var(--teal);
+    color: var(--teal);
+  }
+
+  .cart-btn.secondary:hover {
+    background: rgba(75,122,114,0.12);
+  }
+
+  @media (max-width: 480px) {
+    header.hero { padding: 56px 0 40px; }
+    .wrap { padding: 0 20px; }
+    .pillar-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .rate-row-inner { grid-template-columns: 1fr; row-gap: 10px; }
+    .rate-price { text-align: left; }
+    .rate-unit { text-align: left; }
+    .cart-bar-main { padding: 12px 20px; }
+    .cart-breakdown-inner { padding: 14px 20px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="kicker">Rate card — 2026</p>
+    <h1 class="name">Wesley Wes Creates</h1>
+    <p class="tagline">Podcast production and social media management for people who have something worth saying, and want it to sound and look like it.</p>
+    <p class="howto">Tap a package to build your quote — the total updates at the bottom.</p>
+  </header>
+
+  <section class="work">
+    <h2 class="work-title">Recent work</h2>
+    <p class="work-sub">A few things I've produced and managed. Replace these with your own links before sharing.</p>
+    <div class="work-grid">
+      <a href="#" class="work-card">
+        <p class="work-card-label">Podcast</p>
+        <p class="work-card-title">Business Clinics — episode sample</p>
+        <p class="work-card-desc">→ <iframe width="560" height="315" src="https://www.youtube.com/embed/7cVgFu7wgt0?si=hal1_nTsBupy8JEG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+      </a>
+      <a href="#" class="work-card">
+        <p class="work-card-label">Social media</p>
+        <p class="work-card-title">Client account growth snapshot</p>
+        <p class="work-card-desc">→ https://www.instagram.com/elitek9andanimalcare?stkn=N3lrNGNrcHNsNG5s </p>
+      </a>
+      <a href="#" class="work-card">
+        <p class="work-card-label">Design</p>
+        <p class="work-card-title"> Design Samples</p>
+        <p class="work-card-desc">→https://canva.link/argwwz1z8z4jddo </p>
+      </a>
+    </div>
+  </section>
+
+  <section class="pillar">
+    <div class="pillar-head">
+      <h2 class="pillar-title">Podcast production</h2>
+      <span class="pillar-note">priced per episode</span>
+    </div>
+    <p class="pillar-intro">From raw recordings to something you'd hand to a stranger and not flinch. Choose the tier that matches how much of the process you want off your plate.</p>
+
+    <div class="rate-row" data-group="podcast" data-price="4250" data-label="Edit only">
+      <div class="rate-row-inner">
+        <div class="rate-select">
+          <input type="radio" name="podcast" value="4250|Edit only">
+          <div>
+            <p class="rate-name">Edit only</p>
+            <p class="rate-desc">Audio cleanup, noise reduction, level balancing, intro and outro placement. You bring the raw recording, I bring back something broadcast-ready.</p>
+          </div>
+        </div>
+        <div>
+          <span class="rate-price">3,500–5,000</span>
+          <span class="rate-unit">KES / episode</span>
+        </div>
+      </div>
+      <div class="qty-box show">
+        <label>Episodes per month:</label>
+        <div class="stepper">
+          <button type="button" class="qty-dec">−</button>
+          <span class="qty-val">1</span>
+          <button type="button" class="qty-inc">+</button>
+        </div>
+        <span class="qty-hint">4+ unlocks a 12% retainer discount</span>
+      </div>
+    </div>
+
+    <div class="rate-row" data-group="podcast" data-price="12500" data-label="Full production">
+      <div class="rate-row-inner">
+        <div class="rate-select">
+          <input type="radio" name="podcast" value="12500|Full production">
+          <div>
+            <p class="rate-name">Full production</p>
+            <p class="rate-desc">Everything in Edit Only, plus pre-production planning, session support on recording day, written show notes, and upload to one platform.</p>
+          </div>
+        </div>
+        <div>
+          <span class="rate-price">10,000–15,000</span>
+          <span class="rate-unit">KES / episode</span>
+        </div>
+      </div>
+      <div class="qty-box show">
+        <label>Episodes per month:</label>
+        <div class="stepper">
+          <button type="button" class="qty-dec">−</button>
+          <span class="qty-val">1</span>
+          <button type="button" class="qty-inc">+</button>
+        </div>
+        <span class="qty-hint">4+ unlocks a 12% retainer discount</span>
+      </div>
+    </div>
+
+    <div class="rate-row" data-group="podcast" data-price="25000" data-label="Full-service">
+      <div class="rate-row-inner">
+        <div class="rate-select">
+          <input type="radio" name="podcast" value="25000|Full-service">
+          <div>
+            <p class="rate-name">Full-service</p>
+            <p class="rate-desc">Everything in Full Production, plus 3–5 short-form clips or audiograms with captions, a full transcript, and distribution across platforms.</p>
+          </div>
+        </div>
+        <div>
+          <span class="rate-price">20,000–30,000</span>
+          <span class="rate-unit">KES / episode</span>
+        </div>
+      </div>
+      <div class="qty-box show">
+        <label>Episodes per month:</label>
+        <div class="stepper">
+          <button type="button" class="qty-dec">−</button>
+          <span class="qty-val">1</span>
+          <button type="button" class="qty-inc">+</button>
+        </div>
+        <span class="qty-hint">4+ unlocks a 12% retainer discount</span>
+      </div>
+    </div>
+
+    <div class="retainer-note">
+      <strong>Monthly retainer:</strong> pick 4 or more episodes a month on any tier above and the calculator automatically takes 12% off. Good fit once a show settles into a rhythm.
+    </div>
+  </section>
+
+  <section class="pillar">
+    <div class="pillar-head">
+      <h2 class="pillar-title">Social media &amp; digital marketing</h2>
+      <span class="pillar-note">priced monthly</span>
+    </div>
+    <p class="pillar-intro">Consistent presence without you having to think about it daily. Content calendars, posting, and reporting scaled to how much ground you want covered.</p>
+
+    <div class="rate-row" data-group="social" data-price="13500" data-label="Starter">
+      <div class="rate-row-inner">
+        <div class="rate-select">
+          <input type="radio" name="social" value="13500|Starter">
+          <div>
+            <p class="rate-name">Starter</p>
+            <p class="rate-desc">Two platforms, around 12 posts a month, and a content calendar you approve ahead of time.</p>
+          </div>
+        </div>
+        <div>
+          <span class="rate-price">12,000–15,000</span>
+          <span class="rate-unit">KES / month</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rate-row" data-group="social" data-price="24000" data-label="Growth">
+      <div class="rate-row-inner">
+        <div class="rate-select">
+          <input type="radio" name="social" value="24000|Growth">
+          <div>
+            <p class="rate-name">Growth</p>
+            <p class="rate-desc">Three platforms, around 20 posts a month, community management, and a monthly performance report.</p>
+          </div>
+        </div>
+        <div>
+          <span class="rate-price">20,000–28,000</span>
+          <span class="rate-unit">KES / month</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rate-row" data-group="social" data-price="42500" data-label="Full digital marketing">
+      <div class="rate-row-inner">
+        <div class="rate-select">
+          <input type="radio" name="social" value="42500|Full digital marketing">
+          <div>
+            <p class="rate-name">Full digital marketing</p>
+            <p class="rate-desc">Three to four platforms, daily posting, paid ad support, monthly strategy calls, and full analytics reporting.</p>
+          </div>
+        </div>
+        <div>
+          <span class="rate-price">35,000–50,000</span>
+          <span class="rate-unit">KES / month</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="retainer-note">
+      <strong>Bundle discount:</strong> select a podcast package alongside any social media package and the calculator applies an extra 5% off both combined.
+    </div>
+  </section>
+
+  <section class="pillar">
+    <div class="pillar-head">
+      <h2 class="pillar-title">Add-ons</h2>
+    </div>
+    <ul class="addons-list">
+      <li id="rushLi">
+        <label class="addon-row">
+          <input type="checkbox" class="addon-check" id="rushCheck" data-price="0" data-label="Rush turnaround" data-type="rush" disabled>
+          <span class="addon-name">
+            Rush turnaround (under 48 hours)
+            <span class="addon-hint" id="rushHint">Select a podcast package first</span>
+          </span>
+          <span class="addon-price">+20% of podcast total</span>
+        </label>
+      </li>
+      <li>
+        <label class="addon-row">
+          <input type="checkbox" class="addon-check" data-price="2000" data-label="Episode script / interview prep">
+          <span class="addon-name">Episode script or interview question prep</span>
+          <span class="addon-price">1,500–2,500 KES</span>
+        </label>
+      </li>
+      <li>
+        <label class="addon-row">
+          <input type="checkbox" class="addon-check" data-price="1500" data-label="Guest research briefing">
+          <span class="addon-name">Guest research briefing</span>
+          <span class="addon-price">1,000–2,000 KES</span>
+        </label>
+      </li>
+      <li>
+        <label class="addon-row">
+          <input type="checkbox" class="addon-check" data-price="3250" data-label="Cover art / episode artwork">
+          <span class="addon-name">Cover art / episode artwork design</span>
+          <span class="addon-price">2,500–4,000 KES</span>
+        </label>
+      </li>
+      <li>
+        <label class="addon-row">
+          <input type="checkbox" class="addon-check" data-price="15000" data-label="Landing page / website">
+          <span class="addon-name">Landing page or simple website</span>
+          <span class="addon-price">from 15,000 KES</span>
+        </label>
+      </li>
+    </ul>
+  </section>
+
+  <footer class="closing">
+    <p class="closing-text">Every show is different. If nothing above fits exactly, tell me what you're building and I'll put a package together for it.</p>
+    <p class="contact-line">
+      Wesley Wes · Podcast production & digital marketing<br>
+      <a href="mailto:handywesley@gmail.com">handywesley@gmail.com</a>
+    </p>
+    <div class="payment-terms">
+      <strong>Payment terms:</strong> 50% deposit to begin work, balance due on delivery. For monthly retainers, payment is due at the start of each month.
+    </div>
+    <p class="validity">Rates shown in Kenyan Shillings (KES). The calculator uses the midpoint of each range as an estimate — final pricing is confirmed on a quick call. Reviewed periodically.</p>
+  </footer>
+
+</div>
+
+<div class="cart-bar" id="cartBar">
+  <div class="cart-bar-main" id="cartToggle">
+    <div>
+      <p class="cart-label">Your estimate</p>
+      <p class="cart-total" id="cartTotalDisplay"><span class="empty-hint">Pick a package to get started</span></p>
+    </div>
+    <div class="cart-toggle">
+      <span id="cartToggleLabel">View breakdown</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+  </div>
+  <div class="cart-breakdown">
+    <div class="cart-breakdown-inner" id="cartBreakdown">
+      <p class="cart-empty-msg">Nothing selected yet.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const podcastRows = document.querySelectorAll('.rate-row[data-group="podcast"]');
+  const socialRows = document.querySelectorAll('.rate-row[data-group="social"]');
+  const addonChecks = document.querySelectorAll('.addon-check');
+  const rushCheck = document.getElementById('rushCheck');
+  const rushLi = document.getElementById('rushLi');
+  const rushHint = document.getElementById('rushHint');
+  const cartBar = document.getElementById('cartBar');
+  const cartToggle = document.getElementById('cartToggle');
+  const cartToggleLabel = document.getElementById('cartToggleLabel');
+  const cartTotalDisplay = document.getElementById('cartTotalDisplay');
+  const cartBreakdown = document.getElementById('cartBreakdown');
+
+  // TODO: replace with your real WhatsApp number in international format, no + or spaces
+  const WHATSAPP_NUMBER = '2547XXXXXXXX';
+  const EMAIL_ADDRESS = 'handywesley@gmail.com';
+
+  function fmt(n) {
+    return Math.round(n).toLocaleString('en-KE');
+  }
+
+  function getQty(row) {
+    const el = row.querySelector('.qty-val');
+    return el ? parseInt(el.textContent, 10) : 1;
+  }
+
+  function setQty(row, val) {
+    const el = row.querySelector('.qty-val');
+    if (el) el.textContent = Math.max(1, val);
+  }
+
+  function updateActiveStates() {
+    [...podcastRows, ...socialRows].forEach(row => {
+      const radio = row.querySelector('input[type="radio"]');
+      row.classList.toggle('is-active', radio.checked);
+    });
+  }
+
+  function calculate() {
+    let podcastTotal = 0;
+    let podcastLabel = '';
+    let podcastQty = 1;
+    let retainerDiscount = 0;
+
+    const podcastChecked = document.querySelector('input[name="podcast"]:checked');
+
+    // Enable/disable rush add-on based on podcast selection
+    if (podcastChecked) {
+      rushCheck.disabled = false;
+      rushLi.classList.remove('is-disabled');
+      rushHint.textContent = 'Adds 20% to your podcast line';
+    } else {
+      rushCheck.disabled = true;
+      rushCheck.checked = false;
+      rushLi.classList.add('is-disabled');
+      rushHint.textContent = 'Select a podcast package first';
+    }
+
+    if (podcastChecked) {
+      const row = podcastChecked.closest('.rate-row');
+      const price = parseFloat(row.dataset.price);
+      podcastQty = getQty(row);
+      podcastLabel = row.dataset.label;
+      let base = price * podcastQty;
+      if (podcastQty >= 4) {
+        retainerDiscount = base * 0.12;
+        base = base - retainerDiscount;
+      }
+      podcastTotal = base;
+    }
+
+    let socialTotal = 0;
+    let socialLabel = '';
+    const socialChecked = document.querySelector('input[name="social"]:checked');
+    if (socialChecked) {
+      const row = socialChecked.closest('.rate-row');
+      socialTotal = parseFloat(row.dataset.price);
+      socialLabel = row.dataset.label;
+    }
+
+    let combined = podcastTotal + socialTotal;
+    let bundleDiscount = 0;
+    if (podcastChecked && socialChecked) {
+      bundleDiscount = combined * 0.05;
+      combined = combined - bundleDiscount;
+    }
+
+    let addonsTotal = 0;
+    let rushAmount = 0;
+    const addonLines = [];
+    addonChecks.forEach(chk => {
+      if (!chk.checked) return;
+      if (chk.dataset.type === 'rush') {
+        if (podcastChecked) {
+          rushAmount = podcastTotal * 0.2;
+          addonsTotal += rushAmount;
+          addonLines.push({ label: 'Rush turnaround (+20% of podcast total)', amount: rushAmount });
+        }
+      } else {
+        const p = parseFloat(chk.dataset.price);
+        addonsTotal += p;
+        addonLines.push({ label: chk.dataset.label, amount: p });
+      }
+    });
+
+    const grandTotal = combined + addonsTotal;
+    const hasSelection = podcastChecked || socialChecked || addonLines.length > 0;
+
+    if (!hasSelection) {
+      cartTotalDisplay.innerHTML = '<span class="empty-hint">Pick a package to get started</span>';
+    } else {
+      cartTotalDisplay.textContent = 'KES ' + fmt(grandTotal);
+    }
+
+    let html = '';
+    let summaryLines = [];
+
+    if (!hasSelection) {
+      html = '<p class="cart-empty-msg">Nothing selected yet.</p>';
+    } else {
+      if (podcastChecked) {
+        const lineAmt = parseFloat(podcastChecked.closest('.rate-row').dataset.price) * podcastQty;
+        html += `<div class="cart-line"><span>${podcastLabel} × ${podcastQty} episode${podcastQty > 1 ? 's' : ''}</span><span>KES ${fmt(lineAmt)}</span></div>`;
+        summaryLines.push(`${podcastLabel} x ${podcastQty} episode(s): KES ${fmt(lineAmt)}`);
+        if (retainerDiscount > 0) {
+          html += `<div class="cart-line discount"><span>Retainer discount (12%)</span><span>−KES ${fmt(retainerDiscount)}</span></div>`;
+          summaryLines.push(`Retainer discount (12%): -KES ${fmt(retainerDiscount)}`);
+        }
+      }
+      if (socialChecked) {
+        html += `<div class="cart-line"><span>${socialLabel} (monthly)</span><span>KES ${fmt(socialTotal)}</span></div>`;
+        summaryLines.push(`${socialLabel} (monthly): KES ${fmt(socialTotal)}`);
+      }
+      if (bundleDiscount > 0) {
+        html += `<div class="cart-line discount"><span>Bundle discount (5%)</span><span>−KES ${fmt(bundleDiscount)}</span></div>`;
+        summaryLines.push(`Bundle discount (5%): -KES ${fmt(bundleDiscount)}`);
+      }
+      addonLines.forEach(l => {
+        html += `<div class="cart-line"><span>${l.label}</span><span>KES ${fmt(l.amount)}</span></div>`;
+        summaryLines.push(`${l.label}: KES ${fmt(l.amount)}`);
+      });
+      html += `<div class="cart-line total"><span>Estimated total</span><span>KES ${fmt(grandTotal)}</span></div>`;
+      summaryLines.push(`Estimated total: KES ${fmt(grandTotal)}`);
+
+      html += `<p class="cart-next-step">This is a starting point — final scope and pricing confirmed on a quick call or chat.</p>`;
+
+      const emailSubject = encodeURIComponent('Quote request — Wesley Wes Creates');
+      const emailBody = encodeURIComponent(
+        "Hi Wesley,\n\nI'd like to move forward with this package:\n\n" +
+        summaryLines.join('\n') +
+        "\n\nLet's set up a time to confirm the details.\n"
+      );
+      const waText = encodeURIComponent(
+        "Hi Wesley, I'd like to move forward with this package:\n\n" +
+        summaryLines.join('\n') +
+        "\n\nCan we set up a time to confirm the details?"
+      );
+
+      html += `<div class="cart-actions">
+        <a class="cart-btn primary" href="mailto:${EMAIL_ADDRESS}?subject=${emailSubject}&body=${emailBody}">Email me this quote</a>
+        <a class="cart-btn secondary" href="https://wa.me/${WHATSAPP_NUMBER}?text=${waText}" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>`;
+    }
+    cartBreakdown.innerHTML = html;
+
+    updateActiveStates();
+  }
+
+  document.querySelectorAll('input[name="podcast"], input[name="social"]').forEach(input => {
+    input.addEventListener('change', calculate);
+  });
+  addonChecks.forEach(chk => chk.addEventListener('change', calculate));
+
+  [...podcastRows, ...socialRows].forEach(row => {
+    row.addEventListener('click', (e) => {
+      if (e.target.closest('.stepper')) return;
+      const radio = row.querySelector('input[type="radio"]');
+      radio.checked = true;
+      calculate();
+    });
+  });
+
+  document.querySelectorAll('.addons-list li').forEach(li => {
+    li.addEventListener('click', (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      const chk = li.querySelector('.addon-check');
+      if (chk.disabled) return;
+      chk.checked = !chk.checked;
+      calculate();
+    });
+  });
+
+  document.querySelectorAll('.qty-inc').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const row = btn.closest('.rate-row');
+      setQty(row, getQty(row) + 1);
+      calculate();
+    });
+  });
+  document.querySelectorAll('.qty-dec').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const row = btn.closest('.rate-row');
+      setQty(row, getQty(row) - 1);
+      calculate();
+    });
+  });
+
+  cartToggle.addEventListener('click', () => {
+    cartBar.classList.toggle('open');
+    cartToggleLabel.textContent = cartBar.classList.contains('open') ? 'Hide breakdown' : 'View breakdown';
+  });
+
+  calculate();
+</script>
+
+</body>
+</html>
