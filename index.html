@@ -14,7 +14,10 @@
     --text: #ece7dd;
     --text-dim: #9aa2a8;
     --amber: #e8a33d;
-    --teal: #4b7a72;
+    --teal: #3f7d55;
+    --jungle: #3f7d55;
+    --jungle-light: #6fb98a;
+    --coral: #d1667e;
   }
 
   * { box-sizing: border-box; }
@@ -127,7 +130,7 @@
     color: var(--text);
     border: 1px solid var(--line);
     border-radius: 6px;
-    padding: 18px;
+    overflow: hidden;
     transition: border-color 0.15s ease, background 0.15s ease;
   }
 
@@ -136,12 +139,54 @@
     background: rgba(232,163,61,0.05);
   }
 
+  .work-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--panel);
+    overflow: hidden;
+  }
+
+  .work-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .work-thumb-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    background: repeating-linear-gradient(45deg, var(--panel), var(--panel) 10px, #202830 10px, #202830 20px);
+    color: var(--text-dim);
+    font-size: 11px;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .work-card-body {
+    padding: 16px 18px 18px;
+  }
+
   .work-card-label {
     font-size: 11.5px;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     color: var(--amber);
     margin: 0 0 8px;
+  }
+
+  .work-card-label-design {
+    color: var(--jungle-light);
+  }
+
+  .work-card-design {
+    cursor: default;
   }
 
   .work-card-title {
@@ -163,6 +208,44 @@
     color: var(--text-dim);
     margin-top: 18px;
     font-style: italic;
+  }
+
+  /* BRANDS STRIP */
+  section.brands {
+    padding: 40px 0 48px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .brands-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+    margin: 0 0 24px;
+  }
+
+  .brands-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .brand-logo {
+    height: 36px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(1.6) opacity(0.75);
+    transition: filter 0.15s ease;
+  }
+
+  .brand-logo:hover {
+    filter: grayscale(0%) brightness(1) opacity(1);
+  }
+
+  .brand-slot {
+    display: none;
   }
 
   /* SECTIONS */
@@ -348,6 +431,24 @@
   .retainer-note strong {
     color: var(--text);
     font-weight: 600;
+  }
+
+  /* SOCIAL MEDIA SECTION — coral accent */
+  .pillar-social .rate-price,
+  .pillar-social .pillar-note {
+    color: var(--coral);
+  }
+
+  .pillar-social input[type="radio"] {
+    accent-color: var(--coral);
+  }
+
+  .pillar-social .rate-row.is-active {
+    background: rgba(209,102,126,0.08);
+  }
+
+  .pillar-social .retainer-note {
+    border-left-color: var(--coral);
   }
 
   /* ADD-ONS */
@@ -650,24 +751,67 @@
 
   <section class="work">
     <h2 class="work-title">Recent work</h2>
-    <p class="work-sub">A few things I've produced and managed.</p>
+    <p class="work-sub">A few things I've produced and managed. Replace the image files and links with your own before sharing.</p>
     <div class="work-grid">
-      <a href="#" class="work-card">
-        <p class="work-card-label">Podcast</p>
-        <p class="work-card-title">Business Clinics — episode sample</p>
-        <p class="work-card-desc">→ <iframe width="560" height="315" src="https://www.youtube.com/embed/7cVgFu7wgt0?si=hal1_nTsBupy8JEG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+
+      <a href="https://www.youtube.com/watch?v=7cVgFu7wgt0" class="work-card" target="_blank" rel="noopener">
+        <div class="work-thumb">
+          <img src="https://img.youtube.com/vi/7cVgFu7wgt0/hqdefault.jpg" alt="Business Clinics podcast episode"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="work-thumb-placeholder" style="display:none;">
+            Save a screenshot as<br><strong>images/work-podcast.jpg</strong>
+          </div>
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-label">Podcast</p>
+          <p class="work-card-title">Business Clinics — episode sample</p>
+          <p class="work-card-desc">Watch the episode on YouTube.</p>
+        </div>
       </a>
-      <a href="#" class="work-card">
-        <p class="work-card-label">Social media</p>
-        <p class="work-card-title">Client account growth snapshot</p>
-        <p class="work-card-desc">→ https://www.instagram.com/elitek9andanimalcare?stkn=N3lrNGNrcHNsNG5s </p>
+
+      <a href="https://www.instagram.com/elitek9andanimalcare" class="work-card" target="_blank" rel="noopener">
+        <div class="work-thumb">
+          <img src="images/work-social.jpg" alt="Instagram social media post"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="work-thumb-placeholder" style="display:none;">
+            Save a screenshot as<br><strong>images/work-social.jpg</strong>
+          </div>
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-label">Social media</p>
+          <p class="work-card-title">Instagram post / campaign</p>
+          <p class="work-card-desc">Links through to the Instagram profile.</p>
+        </div>
       </a>
-      <a href="#" class="work-card">
-        <p class="work-card-label">Design</p>
-        <p class="work-card-title"> Design Samples</p>
-        <p class="work-card-desc">→https://canva.link/argwwz1z8z4jddo </p>
-      </a>
+
+      <div class="work-card work-card-design">
+        <div class="work-thumb">
+          <img src="images/work-design.jpg" alt="Design portfolio collage"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="work-thumb-placeholder" style="display:none;">
+            Export from Canva as<br><strong>images/work-design.jpg</strong>
+          </div>
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-label work-card-label-design">Design</p>
+          <p class="work-card-title">Design portfolio</p>
+          <p class="work-card-desc">A spread of designs I've created.</p>
+        </div>
+      </div>
+
     </div>
+    <p class="work-note">The image slots above look for files in an "images" folder next to this HTML file. Save your screenshots or Canva exports there with the exact filenames shown, and the two remaining link hrefs can be updated to any URL you like. Until an image is added, a dashed placeholder shows instead of a broken image icon.</p>
+  </section>
+
+  <section class="brands">
+    <p class="brands-title">Brands I've worked with</p>
+    <div class="brands-row">
+      <img class="brand-logo" src="images/brand-1.png" alt="Brand name" onerror="this.style.display='none';">
+      <img class="brand-logo" src="images/brand-2.png" alt="Brand name" onerror="this.style.display='none';">
+      <img class="brand-logo" src="images/brand-3.png" alt="Brand name" onerror="this.style.display='none';">
+      <img class="brand-logo" src="images/brand-4.png" alt="Brand name" onerror="this.style.display='none';">
+    </div>
+    <p class="work-note">Drop transparent-background PNG logos into images/brand-1.png, brand-2.png, etc. Logos without a matching file simply won't show, so add as many or as few as you have permission to use.</p>
   </section>
 
   <section class="pillar">
@@ -757,7 +901,7 @@
     </div>
   </section>
 
-  <section class="pillar">
+  <section class="pillar pillar-social">
     <div class="pillar-head">
       <h2 class="pillar-title">Social media &amp; digital marketing</h2>
       <span class="pillar-note">priced monthly</span>
@@ -855,9 +999,9 @@
       </li>
       <li>
         <label class="addon-row">
-          <input type="checkbox" class="addon-check" data-price="15000" data-label="Landing page / website">
-          <span class="addon-name">Landing page or simple website</span>
-          <span class="addon-price">from 15,000 KES</span>
+          <input type="checkbox" class="addon-check" data-price="20000" data-label="Website design">
+          <span class="addon-name">Website design</span>
+          <span class="addon-price">20,000 KES</span>
         </label>
       </li>
     </ul>
