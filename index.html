@@ -203,10 +203,49 @@
     line-height: 1.5;
   }
 
-  .work-note {
+  /* CURRENCY TOGGLE */
+  .currency-toggle {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 18px 0 0;
+  }
+
+  .currency-toggle-label {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .currency-pills {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+  }
+
+  .currency-pill {
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .currency-pill.is-active {
+    background: var(--amber);
+    color: #14181c;
+  }
+
+  .currency-note {
     font-size: 12px;
     color: var(--text-dim);
-    margin-top: 18px;
     font-style: italic;
   }
 
@@ -275,14 +314,117 @@
     align-items: flex-start;
   }
 
-  .rate-select input[type="radio"],
-  .rate-select input[type="checkbox"] {
-    margin-top: 4px;
+  .visually-hidden-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .rate-price-col {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .rate-price-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .cart-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s ease, border-color 0.15s ease;
+    padding: 0;
+  }
+
+  .cart-icon-btn svg {
     width: 18px;
     height: 18px;
-    accent-color: var(--amber);
-    flex-shrink: 0;
-    cursor: pointer;
+    stroke: var(--text-dim);
+  }
+
+  .cart-icon-btn .icon-check {
+    display: none;
+  }
+
+  .cart-icon-btn:hover {
+    border-color: var(--amber);
+  }
+
+  .rate-row.is-active .cart-icon-btn {
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+
+  .rate-row.is-active .cart-icon-btn svg {
+    stroke: #14181c;
+  }
+
+  .rate-row.is-active .cart-icon-btn .icon-cart {
+    display: none;
+  }
+
+  .rate-row.is-active .cart-icon-btn .icon-check {
+    display: block;
+  }
+
+  .pillar-social .rate-row.is-active .cart-icon-btn {
+    background: var(--coral);
+    border-color: var(--coral);
+  }
+
+  .pillar-social .cart-icon-btn:hover {
+    border-color: var(--coral);
+  }
+
+  .cart-icon-sm {
+    width: 32px;
+    height: 32px;
+    margin-left: auto;
+  }
+
+  .cart-icon-sm svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .addon-check:checked ~ .cart-icon-sm {
+    background: var(--jungle);
+    border-color: var(--jungle);
+  }
+
+  .addon-check:checked ~ .cart-icon-sm svg {
+    stroke: #14181c;
+  }
+
+  .addon-check:checked ~ .cart-icon-sm .icon-cart {
+    display: none;
+  }
+
+  .addon-check:checked ~ .cart-icon-sm .icon-check {
+    display: block;
+  }
+
+  .addon-check:disabled ~ .cart-icon-sm {
+    opacity: 0.4;
+    cursor: not-allowed;
   }
 
   .rate-name {
@@ -401,10 +543,6 @@
     color: var(--coral);
   }
 
-  .pillar-social input[type="radio"] {
-    accent-color: var(--coral);
-  }
-
   .pillar-social .rate-row.is-active {
     background: rgba(209,102,126,0.08);
   }
@@ -424,11 +562,9 @@
     padding: 14px 0;
     border-top: 1px solid var(--line);
     font-size: 14.5px;
-    cursor: pointer;
   }
 
   .addons-list li.is-disabled {
-    cursor: not-allowed;
     opacity: 0.4;
   }
 
@@ -440,17 +576,22 @@
     display: flex;
     align-items: center;
     gap: 14px;
-  }
-
-  .addon-row input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: var(--amber);
-    flex-shrink: 0;
     cursor: pointer;
   }
 
-  .is-disabled .addon-row input[type="checkbox"] {
+  .addon-row input[type="checkbox"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .is-disabled .addon-row {
     cursor: not-allowed;
   }
 
@@ -692,9 +833,10 @@
     header.hero { padding: 56px 0 40px; }
     .wrap { padding: 0 20px; }
     .pillar-head { flex-direction: column; align-items: flex-start; gap: 4px; }
-    .rate-row-inner { grid-template-columns: 1fr; row-gap: 10px; }
-    .rate-price { text-align: left; }
-    .rate-unit { text-align: left; }
+    .rate-row-inner { grid-template-columns: 1fr; row-gap: 14px; }
+    .rate-price-col { justify-content: flex-start; }
+    .rate-price-text { align-items: flex-start; }
+    .rate-price, .rate-unit { text-align: left; }
     .cart-bar-main { padding: 12px 20px; }
     .cart-breakdown-inner { padding: 14px 20px 18px; }
   }
@@ -713,7 +855,7 @@
 
   <section class="work">
     <h2 class="work-title">Recent work</h2>
-    <p class="work-sub">A few things I've produced and managed.</p>
+    <p class="work-sub">A few things I've produced and managed. Replace the image files and links with your own before sharing.</p>
     <div class="work-grid">
 
       <a href="https://www.youtube.com/watch?v=7cVgFu7wgt0" class="work-card" target="_blank" rel="noopener">
@@ -742,6 +884,7 @@
         <div class="work-card-body">
           <p class="work-card-label">Social media</p>
           <p class="work-card-title">Instagram post / campaign</p>
+          <p class="work-card-desc">Links through to the Instagram profile.</p>
         </div>
       </a>
 
@@ -763,6 +906,15 @@
     </div>
   </section>
 
+  <div class="currency-toggle">
+    <span class="currency-toggle-label">Show prices in:</span>
+    <div class="currency-pills" role="group" aria-label="Currency">
+      <button type="button" class="currency-pill is-active" data-currency="KES">KES</button>
+      <button type="button" class="currency-pill" data-currency="USD">USD</button>
+    </div>
+    <span class="currency-note" id="currencyNote"></span>
+  </div>
+
   <section class="pillar">
     <div class="pillar-head">
       <h2 class="pillar-title">Podcast production</h2>
@@ -773,15 +925,21 @@
     <div class="rate-row" data-group="podcast" data-price="4250" data-label="Edit only">
       <div class="rate-row-inner">
         <div class="rate-select">
-          <input type="radio" name="podcast" value="4250|Edit only">
+          <input type="radio" name="podcast" value="4250|Edit only" class="visually-hidden-input">
           <div>
             <p class="rate-name">Edit only</p>
             <p class="rate-desc">Audio cleanup, noise reduction, level balancing, intro and outro placement. You bring the raw recording, I bring back something broadcast-ready.</p>
           </div>
         </div>
-        <div>
-          <span class="rate-price">3,500–5,000</span>
-          <span class="rate-unit">KES / episode</span>
+        <div class="rate-price-col">
+          <div class="rate-price-text" data-min="3500" data-max="5000" data-unit="episode">
+            <span class="rate-price"></span>
+            <span class="rate-unit"></span>
+          </div>
+          <button type="button" class="cart-icon-btn" aria-label="Add Edit only to cart" aria-pressed="false">
+            <svg class="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
         </div>
       </div>
       <div class="qty-box show">
@@ -798,15 +956,21 @@
     <div class="rate-row" data-group="podcast" data-price="12500" data-label="Full production">
       <div class="rate-row-inner">
         <div class="rate-select">
-          <input type="radio" name="podcast" value="12500|Full production">
+          <input type="radio" name="podcast" value="12500|Full production" class="visually-hidden-input">
           <div>
             <p class="rate-name">Full production</p>
             <p class="rate-desc">Everything in Edit Only, plus pre-production planning, session support on recording day, written show notes, and upload to one platform.</p>
           </div>
         </div>
-        <div>
-          <span class="rate-price">10,000–15,000</span>
-          <span class="rate-unit">KES / episode</span>
+        <div class="rate-price-col">
+          <div class="rate-price-text" data-min="10000" data-max="15000" data-unit="episode">
+            <span class="rate-price"></span>
+            <span class="rate-unit"></span>
+          </div>
+          <button type="button" class="cart-icon-btn" aria-label="Add Full production to cart" aria-pressed="false">
+            <svg class="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
         </div>
       </div>
       <div class="qty-box show">
@@ -823,15 +987,21 @@
     <div class="rate-row" data-group="podcast" data-price="25000" data-label="Full-service">
       <div class="rate-row-inner">
         <div class="rate-select">
-          <input type="radio" name="podcast" value="25000|Full-service">
+          <input type="radio" name="podcast" value="25000|Full-service" class="visually-hidden-input">
           <div>
             <p class="rate-name">Full-service</p>
             <p class="rate-desc">Everything in Full Production, plus 3–5 short-form clips or audiograms with captions, a full transcript, and distribution across platforms.</p>
           </div>
         </div>
-        <div>
-          <span class="rate-price">20,000–30,000</span>
-          <span class="rate-unit">KES / episode</span>
+        <div class="rate-price-col">
+          <div class="rate-price-text" data-min="20000" data-max="30000" data-unit="episode">
+            <span class="rate-price"></span>
+            <span class="rate-unit"></span>
+          </div>
+          <button type="button" class="cart-icon-btn" aria-label="Add Full-service to cart" aria-pressed="false">
+            <svg class="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
         </div>
       </div>
       <div class="qty-box show">
@@ -860,15 +1030,21 @@
     <div class="rate-row" data-group="social" data-price="13500" data-label="Starter">
       <div class="rate-row-inner">
         <div class="rate-select">
-          <input type="radio" name="social" value="13500|Starter">
+          <input type="radio" name="social" value="13500|Starter" class="visually-hidden-input">
           <div>
             <p class="rate-name">Starter</p>
-            <p class="rate-desc">Two platforms, around 15 posts a month, and a content calendar you approve ahead of time.</p>
+            <p class="rate-desc">Two platforms, around 12 posts a month, and a content calendar you approve ahead of time.</p>
           </div>
         </div>
-        <div>
-          <span class="rate-price">12,000–15,000</span>
-          <span class="rate-unit">KES / month</span>
+        <div class="rate-price-col">
+          <div class="rate-price-text" data-min="12000" data-max="15000" data-unit="month">
+            <span class="rate-price"></span>
+            <span class="rate-unit"></span>
+          </div>
+          <button type="button" class="cart-icon-btn" aria-label="Add Starter to cart" aria-pressed="false">
+            <svg class="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -876,15 +1052,21 @@
     <div class="rate-row" data-group="social" data-price="24000" data-label="Growth">
       <div class="rate-row-inner">
         <div class="rate-select">
-          <input type="radio" name="social" value="24000|Growth">
+          <input type="radio" name="social" value="24000|Growth" class="visually-hidden-input">
           <div>
             <p class="rate-name">Growth</p>
-            <p class="rate-desc">Three platforms, around 25 posts a month, community management, and a monthly performance report.</p>
+            <p class="rate-desc">Three platforms, around 20 posts a month, community management, and a monthly performance report.</p>
           </div>
         </div>
-        <div>
-          <span class="rate-price">20,000–28,000</span>
-          <span class="rate-unit">KES / month</span>
+        <div class="rate-price-col">
+          <div class="rate-price-text" data-min="20000" data-max="28000" data-unit="month">
+            <span class="rate-price"></span>
+            <span class="rate-unit"></span>
+          </div>
+          <button type="button" class="cart-icon-btn" aria-label="Add Growth to cart" aria-pressed="false">
+            <svg class="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -892,15 +1074,21 @@
     <div class="rate-row" data-group="social" data-price="42500" data-label="Full digital marketing">
       <div class="rate-row-inner">
         <div class="rate-select">
-          <input type="radio" name="social" value="42500|Full digital marketing">
+          <input type="radio" name="social" value="42500|Full digital marketing" class="visually-hidden-input">
           <div>
             <p class="rate-name">Full digital marketing</p>
             <p class="rate-desc">Three to four platforms, daily posting, paid ad support, monthly strategy calls, and full analytics reporting.</p>
           </div>
         </div>
-        <div>
-          <span class="rate-price">35,000–50,000</span>
-          <span class="rate-unit">KES / month</span>
+        <div class="rate-price-col">
+          <div class="rate-price-text" data-min="35000" data-max="50000" data-unit="month">
+            <span class="rate-price"></span>
+            <span class="rate-unit"></span>
+          </div>
+          <button type="button" class="cart-icon-btn" aria-label="Add Full digital marketing to cart" aria-pressed="false">
+            <svg class="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -923,34 +1111,54 @@
             <span class="addon-hint" id="rushHint">Select a podcast package first</span>
           </span>
           <span class="addon-price">+20% of podcast total</span>
+          <span class="cart-icon-btn cart-icon-sm" aria-hidden="true">
+            <svg class="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
         </label>
       </li>
       <li>
         <label class="addon-row">
           <input type="checkbox" class="addon-check" data-price="2000" data-label="Episode script / interview prep">
           <span class="addon-name">Episode script or interview question prep</span>
-          <span class="addon-price">1,500–2,500 KES</span>
+          <span class="addon-price" data-min="1500" data-max="2500"></span>
+          <span class="cart-icon-btn cart-icon-sm" aria-hidden="true">
+            <svg class="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
         </label>
       </li>
       <li>
         <label class="addon-row">
           <input type="checkbox" class="addon-check" data-price="1500" data-label="Guest research briefing">
           <span class="addon-name">Guest research briefing</span>
-          <span class="addon-price">1,000–2,000 KES</span>
+          <span class="addon-price" data-min="1000" data-max="2000"></span>
+          <span class="cart-icon-btn cart-icon-sm" aria-hidden="true">
+            <svg class="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
         </label>
       </li>
       <li>
         <label class="addon-row">
           <input type="checkbox" class="addon-check" data-price="3250" data-label="Cover art / episode artwork">
           <span class="addon-name">Cover art / episode artwork design</span>
-          <span class="addon-price">2,500–4,000 KES</span>
+          <span class="addon-price" data-min="2500" data-max="4000"></span>
+          <span class="cart-icon-btn cart-icon-sm" aria-hidden="true">
+            <svg class="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
         </label>
       </li>
       <li>
         <label class="addon-row">
           <input type="checkbox" class="addon-check" data-price="20000" data-label="Website design">
           <span class="addon-name">Website design</span>
-          <span class="addon-price">20,000 KES</span>
+          <span class="addon-price" data-min="20000" data-max="20000"></span>
+          <span class="cart-icon-btn cart-icon-sm" aria-hidden="true">
+            <svg class="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
         </label>
       </li>
     </ul>
@@ -1001,13 +1209,74 @@
   const cartTotalDisplay = document.getElementById('cartTotalDisplay');
   const cartBreakdown = document.getElementById('cartBreakdown');
 
-  // TODO: replace with your real WhatsApp number in international format, no + or spaces
   const WHATSAPP_NUMBER = '254716134292';
   const EMAIL_ADDRESS = 'handywesley@gmail.com';
 
-  function fmt(n) {
-    return Math.round(n).toLocaleString('en-KE');
+  // Approximate rate as of Sept 2026. This is a rough guide for
+  // international clients only — invoices are always issued in KES.
+  const KES_PER_USD = 129.4;
+  let currentCurrency = 'KES';
+
+  function fmt(amountKES) {
+    if (currentCurrency === 'USD') {
+      const usd = Math.round(amountKES / KES_PER_USD);
+      return 'USD ' + usd.toLocaleString('en-US');
+    }
+    return 'KES ' + Math.round(amountKES).toLocaleString('en-KE');
   }
+
+  function formatRatePrice(minKES, maxKES) {
+    if (currentCurrency === 'USD') {
+      const min = Math.round(minKES / KES_PER_USD);
+      const max = Math.round(maxKES / KES_PER_USD);
+      return min === max ? `$${min}` : `$${min}–$${max}`;
+    }
+    const min = Math.round(minKES).toLocaleString('en-KE');
+    const max = Math.round(maxKES).toLocaleString('en-KE');
+    return minKES === maxKES ? min : `${min}–${max}`;
+  }
+
+  function formatUnitLabel(unit) {
+    return currentCurrency === 'USD' ? `per ${unit}` : `KES / ${unit}`;
+  }
+
+  function formatAddonPrice(minKES, maxKES) {
+    if (currentCurrency === 'USD') {
+      const min = Math.round(minKES / KES_PER_USD);
+      const max = Math.round(maxKES / KES_PER_USD);
+      return min === max ? `$${min}` : `$${min}–$${max}`;
+    }
+    const min = Math.round(minKES).toLocaleString('en-KE');
+    const max = Math.round(maxKES).toLocaleString('en-KE');
+    return minKES === maxKES ? `${min} KES` : `${min}–${max} KES`;
+  }
+
+  function refreshStaticPrices() {
+    document.querySelectorAll('.rate-price-text').forEach(el => {
+      const min = parseFloat(el.dataset.min);
+      const max = parseFloat(el.dataset.max);
+      el.querySelector('.rate-price').textContent = formatRatePrice(min, max);
+      el.querySelector('.rate-unit').textContent = formatUnitLabel(el.dataset.unit);
+    });
+    document.querySelectorAll('.addon-price[data-min]').forEach(el => {
+      const min = parseFloat(el.dataset.min);
+      const max = parseFloat(el.dataset.max);
+      el.textContent = formatAddonPrice(min, max);
+    });
+    const note = document.getElementById('currencyNote');
+    note.textContent = currentCurrency === 'USD'
+      ? `~1 USD = ${Math.round(KES_PER_USD)} KES · invoices are issued in KES`
+      : '';
+  }
+
+  document.querySelectorAll('.currency-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      currentCurrency = pill.dataset.currency;
+      document.querySelectorAll('.currency-pill').forEach(p => p.classList.toggle('is-active', p === pill));
+      refreshStaticPrices();
+      calculate();
+    });
+  });
 
   function getQty(row) {
     const el = row.querySelector('.qty-val');
@@ -1099,7 +1368,7 @@
     if (!hasSelection) {
       cartTotalDisplay.innerHTML = '<span class="empty-hint">Pick a package to get started</span>';
     } else {
-      cartTotalDisplay.textContent = 'KES ' + fmt(grandTotal);
+      cartTotalDisplay.textContent = fmt(grandTotal);
     }
 
     let html = '';
@@ -1110,27 +1379,27 @@
     } else {
       if (podcastChecked) {
         const lineAmt = parseFloat(podcastChecked.closest('.rate-row').dataset.price) * podcastQty;
-        html += `<div class="cart-line"><span>${podcastLabel} × ${podcastQty} episode${podcastQty > 1 ? 's' : ''}</span><span>KES ${fmt(lineAmt)}</span></div>`;
-        summaryLines.push(`${podcastLabel} x ${podcastQty} episode(s): KES ${fmt(lineAmt)}`);
+        html += `<div class="cart-line"><span>${podcastLabel} × ${podcastQty} episode${podcastQty > 1 ? 's' : ''}</span><span>${fmt(lineAmt)}</span></div>`;
+        summaryLines.push(`${podcastLabel} x ${podcastQty} episode(s): ${fmt(lineAmt)}`);
         if (retainerDiscount > 0) {
-          html += `<div class="cart-line discount"><span>Retainer discount (12%)</span><span>−KES ${fmt(retainerDiscount)}</span></div>`;
-          summaryLines.push(`Retainer discount (12%): -KES ${fmt(retainerDiscount)}`);
+          html += `<div class="cart-line discount"><span>Retainer discount (12%)</span><span>−${fmt(retainerDiscount)}</span></div>`;
+          summaryLines.push(`Retainer discount (12%): -${fmt(retainerDiscount)}`);
         }
       }
       if (socialChecked) {
-        html += `<div class="cart-line"><span>${socialLabel} (monthly)</span><span>KES ${fmt(socialTotal)}</span></div>`;
-        summaryLines.push(`${socialLabel} (monthly): KES ${fmt(socialTotal)}`);
+        html += `<div class="cart-line"><span>${socialLabel} (monthly)</span><span>${fmt(socialTotal)}</span></div>`;
+        summaryLines.push(`${socialLabel} (monthly): ${fmt(socialTotal)}`);
       }
       if (bundleDiscount > 0) {
-        html += `<div class="cart-line discount"><span>Bundle discount (5%)</span><span>−KES ${fmt(bundleDiscount)}</span></div>`;
-        summaryLines.push(`Bundle discount (5%): -KES ${fmt(bundleDiscount)}`);
+        html += `<div class="cart-line discount"><span>Bundle discount (5%)</span><span>−${fmt(bundleDiscount)}</span></div>`;
+        summaryLines.push(`Bundle discount (5%): -${fmt(bundleDiscount)}`);
       }
       addonLines.forEach(l => {
-        html += `<div class="cart-line"><span>${l.label}</span><span>KES ${fmt(l.amount)}</span></div>`;
-        summaryLines.push(`${l.label}: KES ${fmt(l.amount)}`);
+        html += `<div class="cart-line"><span>${l.label}</span><span>${fmt(l.amount)}</span></div>`;
+        summaryLines.push(`${l.label}: ${fmt(l.amount)}`);
       });
-      html += `<div class="cart-line total"><span>Estimated total</span><span>KES ${fmt(grandTotal)}</span></div>`;
-      summaryLines.push(`Estimated total: KES ${fmt(grandTotal)}`);
+      html += `<div class="cart-line total"><span>Estimated total</span><span>${fmt(grandTotal)}</span></div>`;
+      summaryLines.push(`Estimated total: ${fmt(grandTotal)}`);
 
       html += `<p class="cart-next-step">This is a starting point — final scope and pricing confirmed on a quick call or chat.</p>`;
 
@@ -1170,16 +1439,6 @@
     });
   });
 
-  document.querySelectorAll('.addons-list li').forEach(li => {
-    li.addEventListener('click', (e) => {
-      if (e.target.tagName === 'INPUT') return;
-      const chk = li.querySelector('.addon-check');
-      if (chk.disabled) return;
-      chk.checked = !chk.checked;
-      calculate();
-    });
-  });
-
   document.querySelectorAll('.qty-inc').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -1202,6 +1461,7 @@
     cartToggleLabel.textContent = cartBar.classList.contains('open') ? 'Hide breakdown' : 'View breakdown';
   });
 
+  refreshStaticPrices();
   calculate();
 </script>
 
